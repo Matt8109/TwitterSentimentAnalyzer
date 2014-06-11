@@ -1,0 +1,23 @@
+﻿@model Oclumen.Web.Models.TestModel
+
+<div class="grid">
+    <div class="col-1-2">
+        @Model.CurrentTweet.user.screen_name tweeted
+        <p>"@Model.CurrentTweet.text"</p>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="col-1-2">
+        @Html.ActionLink("Positive", "RateTweet", new { id = Model.CurrentTweet.id, sentiment = 2 }, null)
+        @Html.ActionLink("Neutral", "RateTweet", new { id = Model.CurrentTweet.id, sentiment = 0 }, null)
+        @Html.ActionLink("Negative", "RateTweet", new { id = Model.CurrentTweet.id, sentiment = -2 }, null)
+    </div>
+</div>
+<br />
+<br />
+<div class="grid">
+    <div class="col-1-2">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.CurrentTweet.id }, null)
+    </div>
+</div>

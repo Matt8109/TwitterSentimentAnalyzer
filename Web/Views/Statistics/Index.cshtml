@@ -1,0 +1,12 @@
+﻿@model Oclumen.Web.Models.StatisticsModel
+
+<div class="grid">
+    <div class="col-1-2">
+        <h2>System Statistics</h2>
+        <p><strong>Total Tweets:</strong> @Model.TotalTweets.ToString("#,##0")</p>
+        <p><strong>Tweets Awaiting Processing:</strong> @Model.TweetsAwaitingProcessing.ToString("#,##0")</p>
+        <p><strong>Total Hashtag Ngrams:</strong> @Model.TotalHashtagNgrams.ToString("#,##0")</p>
+        <p><strong>Total Ngrams:</strong> @Model.TotalNgrams.ToString("#,##0") - <strong>Unigrams: </strong>@Model.Unigrams.ToString("#,##0") - <strong>Bigrams: </strong>@Model.Bigrams.ToString("#,##0")</p>
+        <p><strong>Total Stemmed Ngrams:</strong> @Model.TotalNgramsStemmed.ToString("#,##0") - <strong>Unigrams: </strong>@Model.StemmedUnigrams.ToString("#,##0") - <strong>Bigrams: </strong>@Model.StemmedBigrams.ToString("#,##0")</p>
+    </div>
+</div>

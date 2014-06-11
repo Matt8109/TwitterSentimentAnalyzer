@@ -1,0 +1,17 @@
+﻿@model Oclumen.Web.Models.TrainerModel
+
+@Model.CurrentTweet.user.screen_name tweeted
+<p>"@Model.CurrentTweet.text"</p>
+
+@Html.ActionLink("Positive", "RateTweet", new { id = Model.CurrentTweet.id, sentiment = 2 }, null)
+@Html.ActionLink("Neutral", "RateTweet", new { id = Model.CurrentTweet.id, sentiment = 0 }, null)
+@Html.ActionLink("Negative", "RateTweet", new { id = Model.CurrentTweet.id, sentiment = -2 }, null)
+
+<p>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.CurrentTweet.id }, null)
+</p>
+
+<p>
+    <strong>Bayes Unigram:</strong> @Model.UnigramSentiment.ToString() <strong>Bayes Bigram:</strong> @Model.BigramSentiment.ToString()<br />
+    <strong>Unigram Stemmed:</strong> @Model.UnigramSentimentStemmed.ToString() <strong>Bigram Stemmed:</strong>@Model.BigramSentimentStemmed.ToString()
+</p>

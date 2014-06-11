@@ -1,0 +1,131 @@
+DELETE FROM Locations
+DELETE FROM Tweets
+DELETE FROM TwitterAccounts
+DELETE FROM HashtagNgrams
+DELETE FROM BasicNgrams
+DELETE FROM StemmedNgrams
+DELETE FROM HashtagUseRecords
+
+
+  select * from BasicNgrams where text like '%benghazi%'
+  select * from BasicNgrams where text = 'Benghazi'
+
+  select sum(positivecount) positive, sum(neutralcount) neutral, sum(negativecount) negative from BasicNgrams where Cardinality=1
+  select sum(rtpositivecount) RTpositive, sum(rtneutralcount) RTneutral, sum(rtnegativecount) RTnegative, sum(rtpositivecount)+ sum(rtneutralcount)+sum(rtnegativecount) [sum] from BasicNgrams where Cardinality=1
+
+  select count(*) VocabSize from BasicNgrams where Cardinality=1 and (RtPositiveCount !=0 or RtNeutralCount !=0 or RtNegativeCount!=0)
+
+SELECT count(*) Correct, (SELECT count(*) from TWEETS tw WHERE tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000') total
+FROM Tweets tw
+WHERE tw.AutoUnigram = tw.TestSentiment
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+SELECT count(*) Correct, (SELECT count(*) from TWEETS tw WHERE tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000') total
+FROM Tweets tw
+WHERE tw.AutoUnigramStemmed = tw.TestSentiment
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+SELECT count(*) Correct, (SELECT count(*) from TWEETS tw WHERE tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000') total
+FROM Tweets tw
+WHERE tw.AutoBigram = tw.TestSentiment
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+SELECT count(*) Correct, (SELECT count(*) from TWEETS tw WHERE tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000') total
+FROM Tweets tw
+WHERE tw.AutoBigramStemmed = tw.TestSentiment
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+SELECT count(*) Pos
+FROM Tweets Tw
+WHERE tw.AutoBigramStemmed = 2
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+  SELECT count(*) Neu
+FROM Tweets Tw
+WHERE tw.AutoBigramStemmed = 0
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+
+  SELECT count(*) Neg
+FROM Tweets Tw
+WHERE tw.AutoBigramStemmed = -2
+  AND tw.TestSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+SELECT MIN(rt.CorpusSentimentTimestamp)
+FROM Tweets rt
+
+select count(*) from tweets where corpussentimenttimestamp!='0001-01-01 00:00:00.0000000'
+
+select count(*) from StemmedNgrams
+select count(*) from StemmedNgrams where Cardinality=1
+select count(*) from StemmedNgrams where Cardinality=2
+
+select count(*) from tweets where TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' and TestSentiment=2
+select count(*) from tweets where TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' and TestSentiment=0
+select count(*) from tweets where TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' and TestSentiment=-2
+
+select count(*) from tweets where TestSentimentTimestamp != '0001-01-01 00:00:00.0000000'
+
+select count(*) from tweets where TestSentiment=AutoUnigram AND TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND AutoSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND TestSentiment =2
+select count(*) from tweets where TestSentiment=AutoUnigramStemmed AND TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND AutoSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND TestSentiment =2
+select count(*) from tweets where TestSentiment=AutoBigram AND TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND AutoSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND TestSentiment =2
+select count(*) from tweets where TestSentiment=AutoBigramStemmed AND TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND AutoSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND TestSentiment =2
+
+
+select * from tweets where TestSentiment=AutoBigram AND TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' AND AutoSentimentTimestamp!='0001-01-01 00:00:00.0000000'
+
+
+-- Test Sentiment Breakdown
+---- Positive  1
+---- Neutral  38
+---- Negative 68
+
+-- Unigram Breakdown
+---- Positive  1
+---- Neutral  11
+---- Negative 64
+
+-- Unigram Stemmed Breakdown
+---- Positive  0
+---- Neutral  11
+---- Negative 64
+
+-- Bigram Breakdown
+---- Positive  1
+---- Neutral  15
+---- Negative 44
+
+-- AutoBigramStemmed Breakdown
+---- Positive  1
+---- Neutral  15
+---- Negative 43
+
+select count(*) from tweets where AutoBigram = 2 AND 
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoBigram
+
+select count(*) from tweets where AutoBigram = 0 AND 
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoBigram
+
+select count(*) from tweets where AutoBigram = -2 AND 
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoBigram
+
+
+--Test Set Accuracy
+select count(*) from tweets where  
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoUnigram
+
+select count(*) from tweets where  
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoBigram
+
+select count(*) from tweets where  
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoUnigramStemmed
+
+select count(*) from tweets where  
+							TestSentimentTimestamp!='0001-01-01 00:00:00.0000000' 
+							AND TestSentiment=AutoBigramStemmed

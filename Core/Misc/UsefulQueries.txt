@@ -1,0 +1,3 @@
+﻿select tw.text, count(tw.text) RetweetCount from tweets tw where tw.text like 'RT%' group by tw.text having count(*) > 1 order by RetweetCount DESC
+
+SELECT tw.id, tw.[text] from tweets tw where tw.text='RT @BarackObama: "All Americans stand with the people of Boston." —President Obama'

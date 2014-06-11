@@ -1,0 +1,75 @@
+﻿@using Oclumen.Core.Text
+@model Oclumen.Web.Models.OverviewModel
+
+@{
+    ViewBag.Title = "Realtime";
+}
+
+<script language="javascript">
+    $(document).ready(function () {
+        $("[data-toggle=tooltip]").tooltip("show");
+    });
+</script>
+<div class="grid">
+    <div class="col-1-2">
+        @foreach (var tweet in Model.RecentlyTaggedTweets)
+        {
+            <div class="span3">
+                <div class="demo-tooltips" style="display: block;">
+                    <p data-toggle="tooltip" title="@tweet.text"></p>
+                </div>
+                <div style="display: block;">
+                    <h4>@tweet.user.name</h4>
+                    <h6>
+                        <strong>Uni:</strong> @((Sentiment)tweet.AutoUnigram)<br />
+                        <strong>Bi:</strong> @((Sentiment)tweet.AutoBigram)<br />
+                        <strong>Unist:</strong>  @((Sentiment)tweet.AutoUnigramStemmed)<br />
+                        <strong>Bist:</strong> @((Sentiment)tweet.AutoUnigramStemmed)
+                    </h6>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-1-2">
+        <div>
+            <h2>Overall</h2>
+            @foreach (var useRecord in Model.RecentSentiment)
+            {
+                <h6>@useRecord.Tag</h6>
+                <div class="progress">
+                    <div class="bar bar-success" style="width: @useRecord.PositivePercent%;"></div>
+                    <div class="bar bar-warning" style="width: @useRecord.NeutralPercent%;"></div>
+                    <div class="bar bar-danger" style="width: @useRecord.NegativePercent%;"></div>
+                </div>
+            }
+        </div>
+        <br/>
+        <div>
+            <h2>Top Hashtags</h2>
+            <h5>over the past hour</h5>
+            @foreach (var useRecord in Model.TopHashtags)
+            {
+                <h6>@useRecord.Tag</h6>
+                <div class="progress">
+                    <div class="bar bar-success" style="width: @useRecord.PositivePercent%;"></div>
+                    <div class="bar bar-warning" style="width: @useRecord.NeutralPercent%;"></div>
+                    <div class="bar bar-danger" style="width: @useRecord.NegativePercent%;"></div>
+                </div>
+            }
+        </div>
+        <br/>
+        <div>
+            <h2>Top Retweets</h2>
+            <h5>over the past hour</h5>
+            @foreach (var useRecord in Model.TopRetweets)
+            {
+                <h6>@useRecord.Tag</h6>
+                <div class="progress">
+                    <div class="bar bar-success" style="width: @useRecord.PositivePercent%;"></div>
+                    <div class="bar bar-warning" style="width: @useRecord.NeutralPercent%;"></div>
+                    <div class="bar bar-danger" style="width: @useRecord.NegativePercent%;"></div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

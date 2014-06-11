@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="OclumenContext-Web.config Connection String" description="OclumenContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=db.oclumen.blackfathom.com;Database=Oclumen;User Id=oclumen_crawler;Password=FrubataCeBut7Ag2;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Matthew\\documents\\visual\ studio\ 2012\\Projects\\Oclumen\\Web\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OclumenContext']/@connectionString" />
+  </parameter>
+</parameters>

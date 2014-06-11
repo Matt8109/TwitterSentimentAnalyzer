@@ -1,0 +1,8 @@
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\bin\Release\Dictionaries\ospd4.txt
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\bin\Release\Oclumen.Core.dll.config
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\bin\Release\Oclumen.Core.dll
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\bin\Release\Oclumen.Core.pdb
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\bin\Release\EntityFramework.dll
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\bin\Release\EntityFramework.xml
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\obj\Release\Oclumen.Core.dll
+C:\Users\Matthew\documents\visual studio 2012\Projects\Oclumen\Core\obj\Release\Oclumen.Core.pdb
